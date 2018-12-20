@@ -1,0 +1,16 @@
+#container .main-filter .ishoplist {
+    height: 75px;
+    width: 200px;
+    margin-left: -40px;
+    overflow-y: scroll;
+}
+
+#container .main-filter .ishoplist .filtritem {
+    list-style-type: none;
+    border: 1px solid gainsboro;
+    cursor: pointer;
+}
+
+#container .main-filter .ishoplist .filtritem:hover {
+    background-color: aquamarine;
+}
