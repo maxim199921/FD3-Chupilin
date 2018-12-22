@@ -4,6 +4,7 @@
 
     propTypes: {
         name: React.PropTypes.string.isRequired,
+        prTarget: React.PropTypes.bool.isRequired,
         ishopList: React.PropTypes.arrayOf(
             React.PropTypes.shape({
                 name: React.PropTypes.string.isRequired,
