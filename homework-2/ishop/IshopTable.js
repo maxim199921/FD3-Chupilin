@@ -17,6 +17,7 @@
     getInitialState: function () {
         return {
             ishopList: this.props.ishopList,
+            prTarget: this.props.prTarget,
         };
     },
 
@@ -33,11 +34,9 @@
     },
 
     changeBackgroundItem: function (evt) {
-        if (evt.currentTarget.style.background === 'red') {
-            evt.currentTarget.style.background = 'khaki';
-        } else {
-            evt.currentTarget.style.background = 'red';
-        }
+        this.state.prTarget ? this.state.prTarget.style.background = 'khaki': null;
+        this.setState({prTarget: evt.currentTarget});
+        evt.currentTarget.style.background = 'red';
     },
 
     render: function () {

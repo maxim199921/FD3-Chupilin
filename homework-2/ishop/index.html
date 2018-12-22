@@ -15,7 +15,6 @@
 <script>
 
   var ishopName='MyShop';
-
   var itemsArr=[
       {name:'ботинок',price:100,url:'https://1.jpeg',quantity:5,code:1},
       {name:'шнурок',price:120,url:'https://2.jpeg',quantity:8,code:2},
@@ -23,9 +22,10 @@
       {name:'трусы',price:70,url:'https://4.jpeg',quantity:12,code:4},
       {name:'кепочка',price:150,url:'https://5.jpeg',quantity:6,code:5}
     ];
+  var prtarget = false
 
     ReactDOM.render(
-      React.createElement(IshopTable,{name:ishopName,ishopList:itemsArr}),
+      React.createElement(IshopTable,{name:ishopName,ishopList:itemsArr, prTarget: prtarget}),
       document.getElementById('container')
     );
 
