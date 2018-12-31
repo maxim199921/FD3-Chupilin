@@ -1,0 +1,15 @@
+﻿.ishopTable {
+  margin: 0 auto;
+  border: solid gray 3px;
+  border-bottom: none;
+  width: 80%;
+  background-color: #F0F0F0;
+}
+
+.ishopTable .nameShop {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: solid gray 3px;
+}
+
