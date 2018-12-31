@@ -4,7 +4,6 @@
 
     propTypes: {
         name: React.PropTypes.string.isRequired,
-        prTarget: React.PropTypes.bool.isRequired,
         ishopList: React.PropTypes.arrayOf(
             React.PropTypes.shape({
                 name: React.PropTypes.string.isRequired,
@@ -18,7 +17,7 @@
     getInitialState: function () {
         return {
             ishopList: this.props.ishopList,
-            prTarget: this.props.prTarget,
+            selectedCode: null,
         };
     },
 
@@ -34,27 +33,25 @@
         }
     },
 
-    changeBackgroundItem: function (evt) {
-        this.state.prTarget ? this.state.prTarget.style.background = 'khaki': null;
-        this.setState({prTarget: evt.currentTarget});
-        evt.currentTarget.style.background = 'red';
+    changeBackgroundItem: function (evt, key) {
+        this.setState({selectedCode: key});
     },
 
     render: function () {
-
         var ishopListResult = this.state.ishopList.map((item) =>
-            React.DOM.div({key: item.code, className: 'tableItem', onClick: this.changeBackgroundItem},
-                React.DOM.span({className: 'nameItem'}, item.name),
-                React.DOM.span({className: 'price'}, item.price),
-                React.DOM.span({className: 'url'}, item.url),
-                React.DOM.span({className: 'quantity'}, item.quantity),
-                React.DOM.button({
-                    className: 'delete', onClick: () => {
-                        return this.delete(item.code);
-                    }
-                }, 'delete'),
-            )
+            React.createElement(IshopItem, {
+                key: item.code,
+                code: item.code,
+                name: item.name,
+                price: item.price,
+                url: item.url,
+                quantity: item.quantity,
+                selectedCode: this.state.selectedCode,
+                cbdelete: this.delete,
+                cbchangeBackgroundItem: this.changeBackgroundItem
+            })
         );
+
         return React.DOM.div({className: 'ishopTable'},
             React.DOM.div({className: 'nameShop'}, this.props.name),
             React.DOM.div({className: 'ishoplist',}, ishopListResult),

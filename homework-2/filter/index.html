@@ -1,41 +1,41 @@
-﻿<!DOCTYPE html> 
-<html> 
-<head> 
-  <meta charset="utf-8" />
-  <title>Filter</title>
-  <link rel="stylesheet" type="text/css" href="Filter.css" />
-  <script src="https://unpkg.com/react@15/dist/react.js"></script>
-  <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
-</head> 
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Filter</title>
+    <link rel="stylesheet" type="text/css" href="Filter.css"/>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+</head>
 <body>
 
-  <div id="container"></div> 
+<div id="container"></div>
 
 <script src="Filter.js"></script>
 <script>
 
-  var itemsArr=[
-      {string:'перекатиполе',code:1},
-      {string:'истинанеависть',code:2},
-      {string:'годзилла',code:3},
-      {string:'колитка',code:4},
-      {string:'антилопа',code:5},
-      {string:'пребалостье',code:6},
-      {string:'братмоегобратамойдруг',code:7},
-      {string:'фантикконфеты',code:8},
-      {string:'вьетнам',code:9},
-      {string:'кириешки',code:10}
+    let itemsArr = [
+        {string: 'перекатиполе', code: 1},
+        {string: 'истинанеависть', code: 2},
+        {string: 'годзилла', code: 3},
+        {string: 'колитка', code: 4},
+        {string: 'антилопа', code: 5},
+        {string: 'пребалостье', code: 6},
+        {string: 'братмоегобратамойдруг', code: 7},
+        {string: 'фантикконфеты', code: 8},
+        {string: 'вьетнам', code: 9},
+        {string: 'кириешки', code: 10}
     ];
-  var startValue = '';
-  var checkStatus = false;
+    let startValue = '';
+    let checkStatus = false;
 
     ReactDOM.render(
-      React.createElement(Filter,{filterList:itemsArr, text: startValue, checkstatus: checkStatus}),
-      document.getElementById('container')
+        React.createElement(Filter, {filterList: itemsArr, text: startValue, checkstatus: checkStatus}),
+        document.getElementById('container')
     );
 
 
 </script>
 
-</body> 
+</body>
 </html>

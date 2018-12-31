@@ -1,4 +1,4 @@
-var Filter = React.createClass({
+let Filter = React.createClass({
 
     displayName: 'filter',
 
@@ -15,6 +15,7 @@ var Filter = React.createClass({
 
     getInitialState: function () {
         return {
+            filterList: this.props.filterList,
             text: this.props.text,
             checkstatus: this.props.checkstatus,
         };
@@ -27,22 +28,24 @@ var Filter = React.createClass({
     },
 
     filterValue: function (evt) {
-        this.setState( {text: evt.target.value} );
+        this.setState( {text: evt.target.value}, this.arrResult );
     },
 
     workMode: function () {
-        this.state.checkstatus === false ? this.setState( {checkstatus: true} ) : this.setState( {checkstatus: false} );
+        this.state.checkstatus === false
+            ? this.setState( {checkstatus: true}, this.arrResult )
+            : this.setState( {checkstatus: false}, this.arrResult);
     },
 
-    arrResult: function (filterList) {
-        return this.state.checkstatus === true
-            ? this.filterFunc(filterList).sort((x, y) => (y.string > x.string) ? -1 : null)
-            : this.filterFunc(filterList);
+    arrResult: function () {
+        this.state.filterList =  this.state.checkstatus === true
+            ? this.setState( {filterList: this.filterFunc(this.props.filterList).sort((x, y) => (y.string > x.string) ? -1 : null)})
+            : this.setState( {filterList: this.filterFunc(this.props.filterList)});
     },
 
     render: function() {
 
-        var filterListResult = this.arrResult(this.props.filterList).map( (item) =>
+        let filterListResult = this.state.filterList.map( (item) =>
             React.DOM.li({key:item.code, className:'filtritem'},item.string)
         );
         return React.DOM.div( {className:'main-filter'},
