@@ -34,7 +34,7 @@ class IshopTable extends React.Component {
                     return item.code !== code;
                 }
             );
-            this.setState({ishopList: filterIshopList});
+            this.setState({ishopList: filterIshopList, workMode: null});
         }
     };
 
