@@ -85,7 +85,6 @@ class IshopForm extends React.Component {
 
     initWorkMode = (evt) => {
         evt.preventDefault();
-        // this.props.cbinitWorkMode(evt)
         ishopEvents.emit('evtInitWorkMode', evt);
     };
 
