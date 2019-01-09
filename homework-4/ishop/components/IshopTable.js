@@ -1,6 +1,8 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
 
+import {ishopEvents} from './events';
+
 import './IshopTable.css';
 
 import IshopItem from './IshopItem';
@@ -26,6 +28,16 @@ class IshopTable extends React.Component {
         selectedCode: null,
         selectedIshopList: [],
         workMode: null,//null- начальный режим, 1- режим просмотра, 2 - режим редактирования, 3 - режим добавления товара
+    };
+
+    componentDidMount = () => {
+        ishopEvents.addListener('evtSaveEdit',this.saveEdit);
+        ishopEvents.addListener('evtInitWorkMode',this.initWorkMode);
+    };
+
+    componentWillUnmount = () => {
+        ishopEvents.removeListener('evtSaveEdit',this.saveEdit);
+        ishopEvents.removeListener('evtInitWorkMode',this.initWorkMode);
     };
 
     delete = (code) => {
@@ -88,8 +100,7 @@ class IshopTable extends React.Component {
                        code={item.code} name={item.name}
                        price={item.price} url={item.url}
                        quantity={item.quantity} selectedCode={this.state.selectedCode}
-                       ishopList={this.state.ishopList} workmode={this.state.workMode}
-                       cbsaveEdit={this.saveEdit} cbinitWorkMode={this.initWorkMode}/>
+                       ishopList={this.state.ishopList} workmode={this.state.workMode}/>
         );
         return (
             <div className='ishopTable'>

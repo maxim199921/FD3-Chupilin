@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {ishopEvents} from './events';
+
 import './IshopForm.css';
 
 class IshopForm extends React.Component {
@@ -14,8 +16,6 @@ class IshopForm extends React.Component {
         selectedCode: PropTypes.number,
         ishopList: PropTypes.any,
         workmode: PropTypes.any,
-        cbsaveEdit: PropTypes.func.isRequired,
-        cbinitWorkMode: PropTypes.func.isRequired,
     };
 
     state = {
@@ -80,12 +80,13 @@ class IshopForm extends React.Component {
 
     saveEdit = (evt) => {
         evt.preventDefault();
-        this.props.cbsaveEdit(evt, this.state.ishopList);
+        ishopEvents.emit('evtSaveEdit', evt, this.state.ishopList);
     };
 
     initWorkMode = (evt) => {
         evt.preventDefault();
-        this.props.cbinitWorkMode(evt)
+        // this.props.cbinitWorkMode(evt)
+        ishopEvents.emit('evtInitWorkMode', evt);
     };
 
     render() {
