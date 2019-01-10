@@ -3,20 +3,10 @@ import PropTypes from 'prop-types';
 
 import './br2jsx.css';
 
-class Br2jsx extends React.Component {
+const Br2jsx = props => <div>{props.string.split(/<br ?\/?>/).map(el => el = [el, <br key={el}/>])}</div>;
 
-    static propTypes = {
-        string: PropTypes.string.isRequired,
-    };
-
-    render() {
-        return (
-            <div>
-                {this.props.string.split(/<br ?\/?>/).map(el => el = [el, <br key={el}/>])}
-            </div>
-        );
-    }
-
-}
+Br2jsx.propTypes = {
+    string: PropTypes.string.isRequired,
+};
 
 export default Br2jsx;
