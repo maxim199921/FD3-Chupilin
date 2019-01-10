@@ -12,9 +12,7 @@ class Br2jsx extends React.Component {
     render() {
         return (
             <div>
-                {this.props.string.split(/<br ?\/?>/).map((el) => {
-                    return el = [el, <br key={el}/>];
-                })}
+                {this.props.string.split(/<br ?\/?>/).map((el) => {return el = [el, <br key={el}/>]})}
             </div>
         );
     }
