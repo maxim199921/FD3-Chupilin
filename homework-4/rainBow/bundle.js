@@ -24117,7 +24117,7 @@ var RainbowFrame = function (_React$Component) {
     _createClass(RainbowFrame, [{
         key: 'render',
         value: function render() {
-            return this.props.color.length !== 0 ? _react2.default.createElement(
+            return this.props.color.length ? _react2.default.createElement(
                 'div',
                 { style: { border: "solid 34px " + this.props.color[0], padding: "10px" } },
                 _react2.default.createElement(
