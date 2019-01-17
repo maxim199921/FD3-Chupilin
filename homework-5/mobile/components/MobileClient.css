@@ -1,0 +1,13 @@
+﻿.mobileClient td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 120px;
+}
+
+.mobileClient .active {
+    background-color: greenyellow;
+}
+
+.mobileClient .blocked {
+    background-color: orangered;
+}
