@@ -24188,14 +24188,15 @@ var MobileCompany = function (_React$PureComponent) {
         }
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MobileCompany.__proto__ || Object.getPrototypeOf(MobileCompany)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+            companyMode: 1, // начальное значение режим работы MTS - 1, VElcom - 2.
             workMode: null, // null - обычный режим, 1 - режим редактирования, 2 - режим добавления клиента
-            selectedIdItem: 0,
+            statusMode: null, // active-1, blocked-2
             clientsMts: _this.props.clientsMts,
             clientsVelcom: _this.props.clientsVelcom,
-            clients: _this.props.clientsMts,
-            clientsChange: _this.props.clientsMts,
-            companyMode: 1, // начальное значение режим работы MTS - 1, VElcom - 2.
-            nameCompany: 'мтс'
+            clientsChange: _this.props.clientsMts, // начальное значение
+            nameCompany: 'мтс',
+            selectedIdItem: 0
+
         }, _this.componentDidMount = function () {
             _events.mobileEvents.addListener('evtDeleteItem', _this.deleteItem);
             _events.mobileEvents.addListener('evtEditItem', _this.editItem);
@@ -24209,63 +24210,106 @@ var MobileCompany = function (_React$PureComponent) {
             _events.mobileEvents.removeListener('evtSaveNewItem', _this.saveNewItem);
             _events.mobileEvents.removeListener('evtEditChangeItem', _this.editChangeItem);
         }, _this.deleteItem = function (id) {
-            var filterClients = _this.state.clients.filter(function (item) {
-                return item.id !== id;
-            });
-            var filterClientsChange = _this.state.clientsChange.filter(function (item) {
-                return item.id !== id;
-            });
-            _this.setState({ clients: filterClients, clientsChange: filterClientsChange });
+            var filterClientsChange = _this.deleteItemFilterFunc(_this.state.clientsChange, id);
+            _this.setState({ clientsChange: filterClientsChange, workMode: null });
             if (_this.state.companyMode === 1) {
-                _this.setState({ clientsMts: filterClients });
+                var filterClientsChangeMts = _this.deleteItemFilterFunc(_this.state.clientsMts, id);
+                _this.setState({ clientsMts: filterClientsChangeMts });
             } else {
-                _this.setState({ clientsVelcom: filterClients });
+                var filterClientsChangeVelcom = _this.deleteItemFilterFunc(_this.state.clientsVelcom, id);
+                _this.setState({ clientsVelcom: filterClientsChangeVelcom });
             }
+        }, _this.deleteItemFilterFunc = function (filterList, id) {
+            var filterClientsChange = filterList.filter(function (item) {
+                return item.id !== id;
+            });
+            return filterClientsChange;
         }, _this.editItem = function (id) {
             _this.setState({ workMode: 1, selectedIdItem: id });
         }, _this.ininWorkMode = function () {
             _this.setState({ workMode: null });
         }, _this.saveNewItem = function (arr) {
-            var clientsChange = [].concat(_toConsumableArray(_this.state.clientsChange));
-            var newArr = [].concat(_toConsumableArray(clientsChange), [arr]);
-            if (_this.state.companyMode === 1) {
-                _this.setState({ workMode: null, clients: newArr, clientsChange: newArr, clientsMts: newArr });
-            } else {
-                _this.setState({ workMode: null, clients: newArr, clientsChange: newArr, clientsVelcom: newArr });
+            var newArr = _this.saveNewItemImmutable(_this.state.clientsChange, arr);
+            if (_this.state.statusMode === 1 && arr.balance >= 0) {
+                _this.setState({ clientsChange: newArr });
+            } else if (_this.state.statusMode === 2 && arr.balance < 0) {
+                _this.setState({ clientsChange: newArr });
+            } else if (_this.state.statusMode === null) {
+                _this.setState({ clientsChange: newArr });
             }
+            if (_this.state.companyMode === 1) {
+                var newArrMts = _this.saveNewItemImmutable(_this.state.clientsMts, arr);
+                _this.setState({ workMode: null, clientsMts: newArrMts });
+            } else {
+                var newArrVelcom = _this.saveNewItemImmutable(_this.state.clientsVelcom, arr);
+                _this.setState({ workMode: null, clientsVelcom: newArrVelcom });
+            }
+        }, _this.saveNewItemImmutable = function (arr, hash) {
+            var clientsChange = [].concat(_toConsumableArray(arr));
+            var newArr = [].concat(_toConsumableArray(clientsChange), [hash]);
+            return newArr;
         }, _this.editChangeItem = function (hash, id) {
-            var newArr = [].concat(_toConsumableArray(_this.state.clients));
+            var newArr = _this.editChangeItemImmutable(_this.state.clientsChange, hash, id);
+            if (_this.state.statusMode === 1) {
+                var filterNewArr = newArr.filter(function (item) {
+                    return item.balance >= 0;
+                });
+                _this.setState({ clientsChange: filterNewArr });
+            } else if (_this.state.statusMode === 2) {
+                var _filterNewArr = newArr.filter(function (item) {
+                    return item.balance < 0;
+                });
+                _this.setState({ clientsChange: _filterNewArr });
+            } else if (_this.state.statusMode === null) {
+                _this.setState({ clientsChange: newArr });
+            }
+            if (_this.state.companyMode === 1) {
+                var newArrMts = _this.editChangeItemImmutable(_this.state.clientsMts, hash, id);
+                _this.setState({ workMode: null, clientsMts: newArrMts });
+            } else {
+                var newArrVelcom = _this.editChangeItemImmutable(_this.state.clientsVelcom, hash, id);
+                _this.setState({ workMode: null, clientsVelcom: newArrVelcom });
+            }
+        }, _this.editChangeItemImmutable = function (arr, hash, id) {
+            var newArr = [].concat(_toConsumableArray(arr));
             newArr.forEach(function (item, i) {
                 if (id === item.id) {
                     var newHash = _extends({}, item);
-                    var finelHash = _extends({}, newHash, { f: hash.f, i: hash.i, o: hash.o, balance: hash.balance });
-                    if (finelHash.id > 3000) {
-                        finelHash.id = hash.id - 2000;
-                    } else {
-                        finelHash.id = hash.id + 2000;
-                    }
-                    newArr[i] = finelHash;
+                    newHash = _extends({}, hash);
+                    newArr[i] = newHash;
                 }
             });
-            if (_this.state.companyMode === 1) {
-                _this.setState({ workMode: null, clients: newArr, clientsChange: newArr, clientsMts: newArr });
-            } else {
-                _this.setState({ workMode: null, clients: newArr, clientsChange: newArr, clientsVelcom: newArr });
-            }
+            return newArr;
         }, _this.newItem = function () {
             _this.setState({ workMode: 2 });
         }, _this.allStatus = function () {
-            _this.setState({ clientsChange: _this.state.clients });
+            if (_this.state.companyMode === 1) {
+                _this.setState({ clientsChange: _this.state.clientsMts, statusMode: null });
+            } else {
+                _this.setState({ clientsChange: _this.state.clientsVelcom, statusMode: null });
+            }
         }, _this.activeStatus = function () {
-            var filterClients = _this.state.clients.filter(function (item) {
+            if (_this.state.companyMode === 1) {
+                _this.activeStatusFilter(_this.state.clientsMts);
+            } else {
+                _this.activeStatusFilter(_this.state.clientsVelcom);
+            }
+        }, _this.activeStatusFilter = function (filterList) {
+            var filterClients = filterList.filter(function (item) {
                 return item.balance >= 0;
             });
-            _this.setState({ clientsChange: filterClients });
+            _this.setState({ clientsChange: filterClients, statusMode: 1 });
         }, _this.blockedStatus = function () {
-            var filterClients = _this.state.clients.filter(function (item) {
+            if (_this.state.companyMode === 1) {
+                _this.blockedStatusFilter(_this.state.clientsMts);
+            } else {
+                _this.blockedStatusFilter(_this.state.clientsVelcom);
+            }
+        }, _this.blockedStatusFilter = function (filterList) {
+            var filterClients = filterList.filter(function (item) {
                 return item.balance < 0;
             });
-            _this.setState({ clientsChange: filterClients });
+            _this.setState({ clientsChange: filterClients, statusMode: 2 });
         }, _this.mts = function () {
             _this.setState({ nameCompany: 'мтс', clientsChange: _this.state.clientsMts, companyMode: 1 });
         }, _this.velcom = function () {
@@ -24276,14 +24320,10 @@ var MobileCompany = function (_React$PureComponent) {
     _createClass(MobileCompany, [{
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
             console.log("MobileCompany render");
             var clientsItemMts = this.state.clientsChange.map(function (client) {
                 return _react2.default.createElement(_MobileClient2.default, { key: client.id,
-                    info: client,
-                    workMode: _this2.state.workMode,
-                    selectedIdItem: _this2.state.selectedIdItem });
+                    info: client });
             });
 
             return _react2.default.createElement(
@@ -24371,11 +24411,14 @@ var MobileCompany = function (_React$PureComponent) {
                                     hidden: this.state.workMode === 1 || this.state.workMode === 2 ? true : null })
                             )
                         ),
-                        this.state.workMode === 1 && _react2.default.createElement(_MobileCard2.default, { clientsChange: this.state.clientsChange,
+                        this.state.workMode === 1 && _react2.default.createElement(_MobileCard2.default, { key: this.state.selectedIdItem,
+                            clientsChange: this.state.clientsChange,
+                            clientsCompany: this.state.companyMode === 1 ? this.state.clientsMts : this.state.clientsVelcom,
                             companyMode: this.state.companyMode,
                             workMode: this.state.workMode,
                             selectedIdItem: this.state.selectedIdItem }),
                         this.state.workMode === 2 && _react2.default.createElement(_MobileCard2.default, { clientsChange: this.state.clientsChange,
+                            clientsCompany: this.state.companyMode === 1 ? this.state.clientsMts : this.state.clientsVelcom,
                             companyMode: this.state.companyMode,
                             workMode: this.state.workMode,
                             selectedIdItem: this.state.selectedIdItem })
@@ -25094,31 +25137,31 @@ var MobileClient = function (_React$PureComponent) {
     _createClass(MobileClient, [{
         key: 'render',
         value: function render() {
-            console.log("MobileClient id=" + this.state.info.id + " render");
+            console.log("MobileClient id=" + this.props.info.id + " render");
             return _react2.default.createElement(
                 'tr',
                 { className: 'mobileClient' },
                 _react2.default.createElement(
                     'td',
                     null,
-                    this.state.info.f
+                    this.props.info.f
                 ),
                 _react2.default.createElement(
                     'td',
                     null,
-                    this.state.info.i
+                    this.props.info.i
                 ),
                 _react2.default.createElement(
                     'td',
                     null,
-                    this.state.info.o
+                    this.props.info.o
                 ),
                 _react2.default.createElement(
                     'td',
                     null,
-                    this.state.info.balance
+                    this.props.info.balance
                 ),
-                this.state.info.balance >= 0 ? _react2.default.createElement(
+                this.props.info.balance >= 0 ? _react2.default.createElement(
                     'td',
                     { className: 'active' },
                     'active'
@@ -25130,14 +25173,12 @@ var MobileClient = function (_React$PureComponent) {
                 _react2.default.createElement(
                     'td',
                     null,
-                    _react2.default.createElement('input', { type: 'submit', value: '\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C', onClick: this.editItem,
-                        disabled: this.props.workMode === 1 || this.props.workMode === 2 ? this.props.selectedIdItem !== this.state.info.id : null })
+                    _react2.default.createElement('input', { type: 'submit', value: '\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C', onClick: this.editItem })
                 ),
                 _react2.default.createElement(
                     'td',
                     null,
-                    _react2.default.createElement('input', { type: 'submit', value: '\u0443\u0434\u0430\u043B\u0438\u0442\u044C', onClick: this.deleteItem,
-                        disabled: this.props.workMode === 1 || this.props.workMode === 2 ? true : null })
+                    _react2.default.createElement('input', { type: 'submit', value: '\u0443\u0434\u0430\u043B\u0438\u0442\u044C', onClick: this.deleteItem })
                 )
             );
         }
@@ -25153,9 +25194,7 @@ MobileClient.propTypes = {
         i: _propTypes2.default.string.isRequired,
         o: _propTypes2.default.string.isRequired,
         balance: _propTypes2.default.any
-    }),
-    workMode: _propTypes2.default.any,
-    selectedIdItem: _propTypes2.default.any
+    })
 };
 exports.default = MobileClient;
 
@@ -25524,7 +25563,11 @@ var MobileCard = function (_React$PureComponent) {
             clientsChange: _this.props.clientsChange,
             clientsItem: _this.props.clientsChange.filter(function (item) {
                 return item.id === _this.props.selectedIdItem;
-            })
+            }),
+            newId: _this.props.clientsCompany.length ? _this.props.clientsCompany.reduce(function (previousValue, currentItem) {
+                // нахожу самый большой айди из всех хэшэй и прибалсяю 1, так получаю уникальный id для нового клиента
+                return previousValue.id > currentItem.id ? previousValue : currentItem;
+            }).id + 1 : 0
         }, _this.initWorkMode = function (evt) {
             _events.mobileEvents.emit('evtInitWorkMode', evt);
         }, _this.f = null, _this.i = null, _this.o = null, _this.balance = null, _this.fFunc = function (ref) {
@@ -25537,9 +25580,8 @@ var MobileCard = function (_React$PureComponent) {
             _this.balance = ref;
         }, _this.saveValue = function () {
             if (_this.f.value && _this.i.value && _this.o.value && _this.balance.value) {
-                // всегда проверяем - мало ли метод вызовется когда DOM-элемента уже нет или ещё нет?
                 var newItem = {
-                    id: _this.props.companyMode === 1 ? 1110 + _this.state.clientsChange.length + 1 : 2220 + _this.state.clientsChange.length + 1,
+                    id: _this.state.newId,
                     f: _this.f.value,
                     i: _this.i.value,
                     o: _this.o.value,
@@ -25560,6 +25602,7 @@ var MobileCard = function (_React$PureComponent) {
     _createClass(MobileCard, [{
         key: 'render',
         value: function render() {
+
             console.log("MobileCard render");
             return this.props.workMode === 1 ? _react2.default.createElement(
                 'tr',
@@ -25697,7 +25740,7 @@ var MobileCard = function (_React$PureComponent) {
                                 _react2.default.createElement(
                                     'td',
                                     null,
-                                    this.props.companyMode === 1 ? 1110 + this.state.clientsChange.length + 1 : 2220 + this.state.clientsChange.length + 1
+                                    this.state.newId
                                 )
                             ),
                             _react2.default.createElement(
@@ -25784,6 +25827,7 @@ MobileCard.propTypes = {
         o: _propTypes2.default.string.isRequired,
         balance: _propTypes2.default.any
     })),
+    clientsCompany: _propTypes2.default.any,
     companyMode: _propTypes2.default.number.isRequired,
     workMode: _propTypes2.default.number.isRequired,
     selectedIdItem: _propTypes2.default.number.isRequired

@@ -28,9 +28,9 @@ class MobileCard extends React.PureComponent {
         clientsItem: this.props.clientsChange.filter((item) => {
             return item.id === this.props.selectedIdItem;
         }),
-        newId: this.props.clientsCompany.reduce((previousValue, currentItem) => { // нахожу самый большой айди из всех хэшэй и прибалсяю 1, так получаю уникальный id для нового клиента
+        newId: this.props.clientsCompany.length ? this.props.clientsCompany.reduce((previousValue, currentItem) => { // нахожу самый большой айди из всех хэшэй и прибалсяю 1, так получаю уникальный id для нового клиента
             return previousValue.id > currentItem.id ? previousValue : currentItem;
-        }).id + 1,
+        }).id + 1 : 0,
     };
 
     initWorkMode = (evt) => {

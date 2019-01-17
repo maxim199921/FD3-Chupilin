@@ -59,24 +59,26 @@ class MobileCompany extends React.PureComponent {
         mobileEvents.removeListener('evtEditChangeItem', this.editChangeItem);
     };
 
+
     deleteItem = (id) => {
-        let filterClientsChange = this.state.clientsChange.filter((item) => {
+        let filterClientsChange = this.deleteItemFilterFunc(this.state.clientsChange, id);
+        this.setState({clientsChange: filterClientsChange, workMode: null});
+        if (this.state.companyMode === 1) {
+            let filterClientsChangeMts = this.deleteItemFilterFunc(this.state.clientsMts, id);
+            this.setState({clientsMts: filterClientsChangeMts});
+        } else {
+            let filterClientsChangeVelcom = this.deleteItemFilterFunc(this.state.clientsVelcom, id);
+            this.setState({clientsVelcom: filterClientsChangeVelcom});
+        }
+    };
+    deleteItemFilterFunc = (filterList, id) => {
+        let filterClientsChange = filterList.filter((item) => {
                 return item.id !== id;
             }
         );
-        this.setState({clientsChange: filterClientsChange, workMode: null});
-        if (this.state.companyMode === 1) {
-            let filterClientsChange = this.state.clientsMts.filter((item) => {
-                return item.id !== id;
-            });
-            this.setState({clientsMts: filterClientsChange});
-        } else {
-            let filterClientsChange = this.state.clientsVelcom.filter((item) => {
-                return item.id !== id;
-            });
-            this.setState({clientsVelcom: filterClientsChange});
-        }
+        return filterClientsChange;
     };
+
 
     editItem = (id) => {
         this.setState({workMode: 1, selectedIdItem: id});
@@ -86,9 +88,9 @@ class MobileCompany extends React.PureComponent {
         this.setState({workMode: null});
     };
 
+
     saveNewItem = (arr) => {
-        let clientsChange = [...this.state.clientsChange];
-        let newArr = [...clientsChange, arr];
+        let newArr = this.saveNewItemImmutable(this.state.clientsChange, arr);
         if (this.state.statusMode === 1 && arr.balance >= 0) {
             this.setState({clientsChange: newArr});
         } else if(this.state.statusMode === 2 && arr.balance < 0){
@@ -97,26 +99,22 @@ class MobileCompany extends React.PureComponent {
             this.setState({clientsChange: newArr});
         }
         if (this.state.companyMode === 1) {
-            let clientsChange = [...this.state.clientsMts];
-            let newArrMts = [...clientsChange, arr];
+            let newArrMts = this.saveNewItemImmutable(this.state.clientsMts, arr);
             this.setState({workMode: null, clientsMts: newArrMts});
         } else {
-            let clientsChange = [...this.state.clientsVelcom];
-            let newArrVelcom = [...clientsChange, arr];
+            let newArrVelcom = this.saveNewItemImmutable(this.state.clientsVelcom, arr);
             this.setState({workMode: null, clientsVelcom: newArrVelcom});
         }
+    };
+    saveNewItemImmutable = (arr, hash) => {
+        let clientsChange = [...arr];
+        let newArr = [...clientsChange, hash];
+        return newArr;
     };
 
 
     editChangeItem = (hash, id) => {
-       let newArr = [...this.state.clientsChange];
-        newArr.forEach((item, i) => {
-            if(id === item.id) {
-                let newHash = {...item};
-                newHash = {...hash};
-                newArr[i]=newHash;
-            }
-        });
+        let newArr = this.editChangeItemImmutable(this.state.clientsChange, hash, id);
         if (this.state.statusMode === 1) {
             let filterNewArr = newArr.filter((item) => {
                     return item.balance >= 0;
@@ -133,27 +131,25 @@ class MobileCompany extends React.PureComponent {
             this.setState({clientsChange: newArr});
         }
         if (this.state.companyMode === 1) {
-            let newArrMts = [...this.state.clientsMts];
-            newArrMts.forEach((item, i) => {
-                if(id === item.id) {
-                    let newHash = {...item};
-                    newHash = {...hash};
-                    newArrMts[i]=newHash;
-                }
-            });
+            let newArrMts = this.editChangeItemImmutable(this.state.clientsMts, hash, id);
             this.setState({workMode: null, clientsMts: newArrMts});
         } else {
-            let newArrVelcom = [...this.state.clientsVelcom];
-            newArrVelcom.forEach((item, i) => {
-                if(id === item.id) {
-                    let newHash = {...item};
-                    newHash = {...hash};
-                    newArrVelcom[i]=newHash;
-                }
-            });
+            let newArrVelcom = this.editChangeItemImmutable(this.state.clientsVelcom, hash, id);
             this.setState({workMode: null, clientsVelcom: newArrVelcom});
         }
     };
+    editChangeItemImmutable = (arr, hash, id) => {
+        let newArr = [...arr];
+        newArr.forEach((item, i) => {
+            if(id === item.id) {
+                let newHash = {...item};
+                newHash = {...hash};
+                newArr[i]=newHash;
+            }
+        });
+        return newArr;
+    };
+
 
     newItem = () => {
         this.setState({workMode: 2});
@@ -167,37 +163,38 @@ class MobileCompany extends React.PureComponent {
         }
     };
 
+
     activeStatus = () => {
         if (this.state.companyMode === 1) {
-            let filterClients = this.state.clientsMts.filter((item) => {
-                    return item.balance >= 0;
-                }
-            );
-            this.setState({clientsChange: filterClients, statusMode: 1});
+            this.activeStatusFilter(this.state.clientsMts);
         } else {
-            let filterClients = this.state.clientsVelcom.filter((item) => {
-                    return item.balance >= 0;
-                }
-            );
-            this.setState({clientsChange: filterClients, statusMode: 1});
+            this.activeStatusFilter(this.state.clientsVelcom);
         }
     };
+    activeStatusFilter = (filterList) => {
+        let filterClients = filterList.filter((item) => {
+                return item.balance >= 0;
+            }
+        );
+        this.setState({clientsChange: filterClients, statusMode: 1});
+    };
+
 
     blockedStatus = () => {
         if (this.state.companyMode === 1) {
-            let filterClients = this.state.clientsMts.filter((item) => {
-                     return item.balance < 0;
-                }
-            );
-            this.setState({clientsChange: filterClients, statusMode: 2});
+            this.blockedStatusFilter(this.state.clientsMts);
         } else {
-            let filterClients = this.state.clientsVelcom.filter((item) => {
-                     return item.balance < 0;
-                }
-            );
-            this.setState({clientsChange: filterClients, statusMode: 2});
+            this.blockedStatusFilter(this.state.clientsVelcom);
         }
     };
+    blockedStatusFilter = (filterList) => {
+        let filterClients = filterList.filter((item) => {
+                return item.balance < 0;
+            }
+        );
+        this.setState({clientsChange: filterClients, statusMode: 2});
+    };
+
 
     mts = () => {
         this.setState({nameCompany: 'мтс', clientsChange: this.state.clientsMts, companyMode: 1});
