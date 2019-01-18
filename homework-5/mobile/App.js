@@ -2,17 +2,16 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-import MobileCompany from './components/MobileCompany';
-
-const clientsMts = require('./mobileClients.json').clientsMts;
-const clientsVelcom = require('./mobileClients.json').clientsVelcom;
+import PagesRouter from './pages/PagesRouter';
+import PagesLinks from './pages/PagesLinks';
 
 ReactDOM.render(
-    <MobileCompany
-        clientsMts={clientsMts}
-        clientsVelcom={clientsVelcom}
-    />
-    , document.getElementById('container')
-);
-
+    <BrowserRouter>
+        <div>
+            <PagesLinks />
+            <PagesRouter />
+        </div>
+    </BrowserRouter>
+    , document.getElementById('container') );

@@ -1,0 +1,10 @@
+.PageLink {
+    color: darkolivegreen;
+    margin-right: 10px;
+    font-size: 40px;
+}
+
+.ActivePageLink {
+    color: greenyellow;
+    font-weight: bold;
+}
