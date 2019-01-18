@@ -1,7 +1,0 @@
-[
-    {"name":"ботинок","price":100,"url":"https://1.jpeg","quantity":5,"code":1},
-    {"name":"шнурок","price":120,"url":"https://2.jpeg","quantity":8,"code":2},
-    {"name":"носок","price":50,"url":"https://3.jpeg","quantity":3,"code":3},
-    {"name":"трусы","price":70,"url":"https://4.jpeg","quantity":12,"code":4},
-    {"name":"кепочка","price":150,"url":"https://5.jpeg","quantity":6,"code":5}
-]
