@@ -1,6 +1,8 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
 
+import { NavLink } from 'react-router-dom';
+
 import MobileClient from './MobileClient';
 import MobileCard from './MobileCard';
 
@@ -215,10 +217,14 @@ class MobileCompany extends React.PureComponent {
         return (
             <div className='MobileCompany'>
                 <div className='MobileCompanyStatusButton'>
-                    <input type='submit' value='мтс' onClick={this.mts}
-                           disabled={(this.state.workMode === 1 || this.state.workMode === 2) ? true : null}/>
-                    <input type='submit' value='велком' onClick={this.velcom}
-                           disabled={(this.state.workMode === 1 || this.state.workMode === 2) ? true : null}/>
+                    <NavLink to="/client/mts">
+                        <input type='submit' value='мтс' onClick={this.mts}
+                               disabled={(this.state.workMode === 1 || this.state.workMode === 2) ? true : null}/>
+                    </NavLink>
+                    <NavLink to="/client/velcom">
+                        <input type='submit' value='велком' onClick={this.velcom}
+                               disabled={(this.state.workMode === 1 || this.state.workMode === 2) ? true : null}/>
+                    </NavLink>
                     <br/>
                     <span>Выбран: {this.state.nameCompany}</span>
                 </div>

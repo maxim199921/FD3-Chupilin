@@ -15,6 +15,8 @@ class PagesRouter extends React.Component {
         <Route path="/" exact component={Page_Company} />
         <Route path="/company" component={Page_Contacts} />
         <Route path="/clients" component={Page_Clients} />
+        <Route path="/client/mts" component={Page_Clients} />
+        <Route path="/client/velcom" component={Page_Clients} />
       </div>
     );
     
