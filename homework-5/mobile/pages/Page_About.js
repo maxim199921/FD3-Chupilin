@@ -6,8 +6,8 @@ class Page_About extends React.PureComponent {
 
     return (
       <div>
-        <h2>Иерусалим: ул.Вокзальная 2г</h2>
-        <h3>телефончик: 8032233232</h3>
+        <h2 style={{textAlign: "center"}}>Иерусалим: ул.Вокзальная 2г</h2>
+        <h3 style={{textAlign: "center"}}>телефончик: 8032233232</h3>
       </div>
     );
     

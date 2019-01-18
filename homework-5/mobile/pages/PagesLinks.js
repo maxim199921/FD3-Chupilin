@@ -9,7 +9,7 @@ class PagesLinks extends React.Component {
   render() {
 
     return (
-      <div>
+      <div className="headerLink">
         <NavLink to="/" exact className="PageLink" activeClassName="ActivePageLink">Компание</NavLink>
         <NavLink to="/company" className="PageLink" activeClassName="ActivePageLink">Связь</NavLink>
         <NavLink to="/clients" className="PageLink" activeClassName="ActivePageLink">Клиенты</NavLink>

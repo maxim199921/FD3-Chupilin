@@ -6,8 +6,8 @@ class Page_Company extends React.PureComponent {
 
     return (
       <div>
-        <h2>Статистика клиентов компаний Velcom и Mts</h2>
-        <h3>Разработано М.С.Чупилин</h3>
+        <h2 style={{textAlign: "center"}}>Статистика клиентов компаний Velcom и Mts</h2>
+        <h3 style={{textAlign: "center"}}>Разработано М.С.Чупилин</h3>
       </div>
     );
     
