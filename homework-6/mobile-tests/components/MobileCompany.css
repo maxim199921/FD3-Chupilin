@@ -1,0 +1,29 @@
+﻿.MobileCompany {
+    width: 100%;
+}
+
+.MobileCompanyStatusButton {
+    width: 870px;
+    margin: 0 auto;
+}
+
+.MobileCompanyTable {
+    width: 870px;
+    margin: 0 auto;
+    border: 2px solid skyblue;
+    border-collapse: collapse;
+}
+
+.MobileCompanyTable .MobileCompanyList {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.MobileCompanyTable .MobileCompanyList td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.MobileCompanyTable tr {
+    border: 2px solid skyblue;
+}

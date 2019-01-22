@@ -1,0 +1,26 @@
+.headerLink {
+    background: beige;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.PageLink {
+    color: darkolivegreen;
+    margin-right: 10px;
+    font-size: 40px;
+}
+
+.ActivePageLink {
+    color: greenyellow;
+    font-weight: bold;
+}
+
+.footerLink {
+    background: blue;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    bottom: 0;
+    left: 0
+}
