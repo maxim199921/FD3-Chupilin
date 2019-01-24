@@ -18,9 +18,20 @@ class MobileCompany extends React.PureComponent {
         companyMode: 1, // начальное значение режим работы MTS - 1, VElcom - 2.
         workMode: null, // null - обычный режим, 1 - режим редактирования, 2 - режим добавления клиента
         statusMode: null, // active-1, blocked-2
-        clientsMts: [],
-        clientsVelcom: [],
-        clientsChange: [],// начальное значение
+        clientsMts: [                            {id: 1111, f: "Иванов", i: "Игорь", o: "Иванович", balance: 200},
+            {id: 1112, f: "Сидоров", i: "Сергей", o: "Леонидович", balance: 250},
+            {id: 1113, f: "Петров", i: "Павел", o: "Сергеевич", balance: -20},
+            {id: 1114, f: "Павлов", i: "Генадий", o: "Григорьевич", balance: -220}],
+        clientsVelcom: [                            {id: 1111, f: "Иванов", i: "Игорь", o: "Иванович", balance: 200},
+            {id: 1112, f: "Сидоров", i: "Сергей", o: "Леонидович", balance: 250},
+            {id: 1113, f: "Петров", i: "Павел", o: "Сергеевич", balance: -20},
+            {id: 1114, f: "Павлов", i: "Генадий", o: "Григорьевич", balance: -220}],
+        clientsChange: [
+                            {id: 1111, f: "Иванов", i: "Игорь", o: "Иванович", balance: 200},
+                            {id: 1112, f: "Сидоров", i: "Сергей", o: "Леонидович", balance: 250},
+                            {id: 1113, f: "Петров", i: "Павел", o: "Сергеевич", balance: -20},
+                            {id: 1114, f: "Павлов", i: "Генадий", o: "Григорьевич", balance: -220}
+                        ],// начальное значение
         nameCompany: 'мтс',
         selectedIdItem: 0,
     };
@@ -324,9 +335,9 @@ class MobileCompany extends React.PureComponent {
                 <div className='MobileCompanyStatusButton'>
                     <input type='submit' value='все' onClick={this.allStatus}
                            disabled={(this.state.workMode === 1 || this.state.workMode === 2) ? true : null}/>
-                    <input type='submit' name='active' value='активные' onClick={this.activeStatus}
+                    <input type='submit' value='активные' onClick={this.activeStatus}
                            disabled={(this.state.workMode === 1 || this.state.workMode === 2) ? true : null}/>
-                    <input type='submit' name='blocked' value='заблокированные' onClick={this.blockedStatus}
+                    <input type='submit' value='заблокированные' onClick={this.blockedStatus}
                            disabled={(this.state.workMode === 1 || this.state.workMode === 2) ? true : null}/>
                 </div>
                 <table className='MobileCompanyTable'>
