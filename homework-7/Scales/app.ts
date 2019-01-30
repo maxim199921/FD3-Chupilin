@@ -42,14 +42,14 @@ class Cucumber extends Product {
 
 class Scales {
 
-    storage:{getName(): string, getScale(): number, name: string, scale: number, typeName: string}[];
+    storage: Product[];
 
     constructor() {
         this.storage = [];
     }
 
-    addStorage(name :{getName(): string, getScale(): number, name: string, scale: number, typeName: string}):void {
-        this.storage = [...this.storage, name];
+    addStorage(name: Product):void {
+        this.storage.push(name);
     }
 
     getNameList ():string[] {
