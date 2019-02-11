@@ -1,0 +1,123 @@
+.BasketPage-wrapper {
+    margin-top: 120px;
+    margin-bottom: 50px;
+    background-color: #5dbbc1;
+    color: white;
+    box-shadow: 0 10px 15px 0 rgba(22,35,23,.7);
+}
+
+.BasketPage-header {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 36px;
+    line-height: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.BasketPage-buttons {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.BasketPage .btn-primary {
+    background-color: #130e27 !important;
+    border-color: #130e27 !important;
+    box-shadow: #130e27 !important;
+    font-weight: bold;
+    width: 90px;
+}
+
+.BasketPage-buttons-wrapper {
+    margin: 0;
+    padding: 0;
+}
+
+.BasketPage-empty {
+    width: 100%;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    color: orange;
+    font-weight: bold;
+}
+
+.BasketPage-empty-btn {
+    margin: 0 auto;
+}
+
+@media (max-width: 575px) {
+    .BasketPage .btn-primary {
+        width: 60%;
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none;
+}
+.vertical-align-center {
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+}
+.modal-content {
+    background-color: #5dbbc1;
+    color: white;
+    font-weight: bold;
+    width:inherit;
+    max-width:inherit;
+    height:inherit;
+    margin: 0 auto;
+    pointer-events: all;
+}
+
+.BasketPage-form-name {
+    margin-top: 50px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: none;
+    box-shadow: 0 0 5px 0 rgba(22,35,23,.9);
+}
+
+.BasketPage-form-phone {
+    margin-top: 20px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: none;
+    box-shadow: 0 0 5px 0 rgba(22,35,23,.9);
+}
+
+.BasketPage-form-price {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-left: 10%;
+}
+
+.BasketPage-buttons .BasketPage-form-btn {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.BasketPage-buttons .bd-example-modal-sm .btn-primary {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.success-order {
+    text-align: center;
+}
+
+.success-order-text {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 18px;
+}

@@ -1,0 +1,26 @@
+﻿.ServicesPage {
+  margin-top: 120px;
+  background-color: #efefef;
+}
+
+.ServicesPage-wrapper {
+  margin-bottom: 50px;
+  background-color: #5dbbc1;
+  color: white;
+  box-shadow: 0 10px 15px 0 rgba(22,35,23,.7);
+}
+
+.ServicesPage-services-text,
+.ServicesPage-Comments-text{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.HomePage-Services-text {
+  font-weight: bold;
+  font-size: 20px;
+}

@@ -1,0 +1,148 @@
+.CatalogList {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    position: relative;
+    min-height: 270px;
+}
+
+.CatalogList .addActive {
+    animation: popin 0.7s ease;
+    position: absolute;
+    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXeQIvCZB_WDeRDawdWq--aIollmKD7jFpJKceaIGq2-4viSzDsw");
+    background-repeat: no-repeat;
+    background-size: 90%;
+    width: 30px;
+    height: 30px;
+    right: 30px;
+    top: 5px;
+}
+
+@keyframes popin {
+    from {transform:scale(0)}
+    90%  {transform:scale(1.3)}
+    to   {transform:scale(1)}
+}
+
+.CatalogList .addBlock {
+    display: block;
+}
+
+.CatalogList-wrapper {
+    border-radius: 5%;
+    background-color: white;
+    color: black;
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+    box-shadow: 10px 10px 30px 0 rgba(19, 14, 39, 0.3);
+}
+
+.CatalogList-wrapper:hover {
+    box-shadow: 10px 10px 30px 0 rgba(19, 14, 39, 0.8);
+    cursor: pointer;
+}
+
+.CatalogList .btn {
+    background-color: #5dbbc1;
+    border-color: #5dbbc1;
+    width: 70px;
+}
+
+.CatalogList .btn:focus,
+.CatalogList .btn:active {
+    background-color: #5dbbc1 !important;
+    border-color: #5dbbc1 !important;
+    box-shadow: none !important;
+}
+
+.CatalogList-type {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: bold;
+}
+
+.CatalogList-img-wrapper {
+    margin-bottom: 60px;
+    height: 120px;
+    display: flex;
+}
+
+.CatalogList-img {
+    margin: auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.CatalogList-model {
+    bottom: 45px;
+    text-align: center;
+    width: 78%;
+    font-size: 15px;
+}
+
+.price-wrapper {
+    position: absolute;
+    bottom: 3px;
+}
+
+.CatalogList-price {
+    color: orange;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.CatalogList-button {
+    margin-left: 15px;
+}
+
+@media (max-width: 1199px) {
+    .CatalogList-price {
+        font-size: 18px;
+        padding-top: 5px;
+    }
+    .CatalogList-button {
+        margin-left: 0;
+    }
+    .CatalogList .btn {
+        width: 60px;
+    }
+}
+
+@media (max-width: 991px) {
+    .CatalogList-model {
+        bottom: 50px;
+    }
+    .CatalogList-price {
+        font-size: 18px;
+    }
+    .CatalogList-button {
+        margin-left: 25px;
+    }
+    .CatalogList .btn {
+        width: 90px;
+    }
+}
+
+@media (max-width: 767px) {
+    .CatalogList-button {
+        margin-left: 5px;
+    }
+    .CatalogList .btn {
+        width: 70px;
+    }
+}
+
+@media (max-width: 575px) {
+    .CatalogList .addActive {
+        right: 50px;
+        top: 10px;
+    }
+    .CatalogList-img-wrapper {
+        height: 250px;
+    }
+    .CatalogList-img {
+        min-height: 60%;
+    }
+}

@@ -1,0 +1,234 @@
+﻿.HomePage {
+    margin-top: 120px;
+}
+
+.HomePage-Services,
+.HomePage-Pricing {
+    text-align: center;
+}
+
+.HomePage-wrapper-comments {
+    background-color: #5dbbc1;
+}
+
+.HomePage-Pricing {
+    font-size: 30px;
+    line-height: 32px;
+    font-weight: bold;
+    padding: 40px;
+}
+
+.HomePage-wrapper-gallery {
+    background-color: #efefef;
+}
+
+.HomePage-wrapper-gallery .btn-primary {
+    background-color: #130e27;
+    border-color: #130e27;
+}
+
+.HomePage-wrapper-gallery .card {
+    height: 100%;
+    width: 90%;
+    margin: 0 auto;
+    box-shadow: 0 0 30px 5px rgba(23, 123, 16, 0.3);
+}
+
+.HomePage-wrapper-gallery .card-title {
+    text-align: center;
+    font-size: 25px;
+    line-height: 27px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.HomePage-wrapper-gallery .card-text {
+    margin-bottom: 75px;
+    text-align: center;
+}
+
+.HomePage-wrapper-gallery .btn {
+    position: absolute;
+    bottom: 20px;
+    width: 50%;
+    left: 25%;
+    right: 25%;
+    font-weight: bold;
+    color: white;
+}
+
+.HomePage-wrapper-comments-text {
+    font-size: 18px;
+    line-height: 22px;
+    color: white;
+    padding: 20px 30px;
+    padding-right: 100px;
+}
+
+.HomePage-wrapper-comments .btn-primary {
+     background-color: #130e27;
+     border-color: #130e27;
+     font-weight: bold;
+ }
+
+.HomePage-wrapper-comments .container .btn-primary {
+    color: white;
+    width: 85%;
+}
+
+.HomePage-wrapper-comments .container .btn-primary:hover {
+    color: white;
+}
+
+@media (max-width: 575px) {
+    .HomePage-wrapper-comments-text {
+        text-align: center;
+        padding: 20px 40px;
+    }
+    .HomePage-wrapper-comments .container .btn-primary {
+        width: 50%;
+        margin-left: 25%;
+        margin-right: 25%;
+        margin-bottom: 20px;
+    }
+}
+
+.HomePage-Services {
+    text-align: left;
+    font-size: 30px;
+    line-height: 32px;
+    font-weight: bold;
+    padding: 40px 20px;
+}
+
+.HomePage-Services-Color {
+    color: #5dbbc1;
+}
+
+.HomePage-Services-text {
+    font-size: 18px;
+    line-height: 22px;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.HomePage-Services-img-wrapper {
+    padding: 0;
+    margin: 0;
+}
+
+.HomePage-Services-img1 {
+    background-image: url("../../img/serviceimg1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 80%;
+    margin: 0 auto;
+    min-height: 155px;
+}
+
+.HomePage-Services-img2 {
+    background-image: url("../../img/serviceimg2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 80%;
+    margin: 0 auto;
+    min-height: 155px;
+}
+
+.HomePage-Services-img3 {
+    background-image: url("../../img/serviceimg3.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 80%;
+    margin: 0 auto;
+    min-height: 155px;
+}
+
+.HomePage-Services-img4 {
+    background-image: url("../../img/serviceimg4.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 80%;
+    margin: 0 auto;
+    min-height: 155px;
+}
+
+@media (max-width: 991px) {
+    .HomePage-Services-img1 {
+        width: 100%;
+    }
+    .HomePage-Services-img2 {
+        width: 100%;
+    }
+    .HomePage-Services-img3 {
+        width: 100%;
+    }
+    .HomePage-Services-img4 {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 575px) {
+    .HomePage-Services {
+        text-align: center;
+    }
+}
+
+.carousel {
+    box-shadow: 0 0 30px 5px rgba(23, 123, 16, 0.3);
+    background-color: #efefef;
+    height: 350px;
+    width: 62%;
+    margin: 0 auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.HomePage-Carousel {
+    background-color: #efefef;
+}
+
+.d-block {
+    height: 350px;
+}
+
+@media (max-width: 991px) {
+    .d-block {
+        height: 250px;
+    }
+    .carousel {
+        height: 250px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 767px) {
+    .carousel {
+        width: 70%;
+    }
+}
+
+@media (max-width: 470px) {
+    .carousel {
+        width: 100%;
+    }
+}
+
+@media (max-width: 370px) {
+    .d-block {
+        height: 150px;
+    }
+    .carousel {
+        height: 150px;
+    }
+}
+
+.HomePage-wrapper-comments-btn .bd-example-modal-sm .btn-primary {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
