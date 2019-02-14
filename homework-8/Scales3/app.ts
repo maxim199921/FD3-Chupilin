@@ -26,6 +26,7 @@ class Scales<StorageEngine extends IStorageEngine> {
         this.store = store;
     };
 
+
     addItem(item:Product):void {
         this.store.addItem(item);
     }
@@ -41,9 +42,8 @@ class Scales<StorageEngine extends IStorageEngine> {
 
     getSumScale(): number {
         let sumScale: number = 0,
-            count = this.store.getCount() - 1,
-            i = 0;
-        for (i; i > count; i++) {
+            count = this.store.getCount();
+        for (let i = 0; i < count; i++) {
             sumScale += this.store.getItem(i).getScale();
         }
         return sumScale;
@@ -51,8 +51,7 @@ class Scales<StorageEngine extends IStorageEngine> {
 
     getNameList(): string[] {
         let nameArray: string[] = [],
-            count = this.store.getCount(),
-            i = 0;
+            count = this.store.getCount();
         for (let i = 0; i < count; i++) {
             nameArray.push(this.store.getItem(i).getName());
         }
