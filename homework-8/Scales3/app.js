@@ -13,20 +13,9 @@ var Product = /** @class */ (function () {
 }());
 var Scales = /** @class */ (function () {
     function Scales(store) {
-        this.data = store.items;
         this.store = store;
     }
     ;
-    Scales.prototype.getSumScale = function () {
-        return this.data.reduce(function (currValue, prevValue) {
-            return currValue + prevValue.getScale();
-        }, 0);
-    };
-    Scales.prototype.getNameList = function () {
-        return this.data.map(function (item) {
-            return item.getName();
-        });
-    };
     Scales.prototype.addItem = function (item) {
         this.store.addItem(item);
     };
@@ -38,6 +27,20 @@ var Scales = /** @class */ (function () {
         return this.store.getCount();
     };
     ;
+    Scales.prototype.getSumScale = function () {
+        var sumScale = 0, count = this.store.getCount() - 1, i = 0;
+        for (i; i > count; i++) {
+            sumScale += this.store.getItem(i).getScale();
+        }
+        return sumScale;
+    };
+    Scales.prototype.getNameList = function () {
+        var nameArray = [], count = this.store.getCount(), i = 0;
+        for (var i_1 = 0; i_1 < count; i_1++) {
+            nameArray.push(this.store.getItem(i_1).getName());
+        }
+        return nameArray;
+    };
     return Scales;
 }());
 var ScalesStorageEngineArr = /** @class */ (function () {

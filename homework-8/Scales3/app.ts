@@ -13,7 +13,6 @@ class Product {
 }
 
 interface IStorageEngine {
-    items: Product[];
     addItem(item:Product):void;
     getItem(index:number):Product;
     getCount():number;
@@ -21,26 +20,11 @@ interface IStorageEngine {
 
 class Scales<StorageEngine extends IStorageEngine> {
 
-    data:Product [];
-
     store:StorageEngine;
 
     constructor(store:StorageEngine) {
-        this.data = store.items;
         this.store = store;
     };
-
-    getSumScale():number {
-        return this.data.reduce((currValue, prevValue) => {
-            return currValue + prevValue.getScale();
-        }, 0);
-    }
-    getNameList ():string[] {
-        return this.data.map((item)=> {
-            return item.getName();
-        })
-    }
-
 
     addItem(item:Product):void {
         this.store.addItem(item);
@@ -53,6 +37,28 @@ class Scales<StorageEngine extends IStorageEngine> {
     getCount():number {
         return this.store.getCount();
     };
+
+
+    getSumScale(): number {
+        let sumScale: number = 0,
+            count = this.store.getCount() - 1,
+            i = 0;
+        for (i; i > count; i++) {
+            sumScale += this.store.getItem(i).getScale();
+        }
+        return sumScale;
+    }
+
+    getNameList(): string[] {
+        let nameArray: string[] = [],
+            count = this.store.getCount(),
+            i = 0;
+        for (let i = 0; i < count; i++) {
+            nameArray.push(this.store.getItem(i).getName());
+        }
+        return nameArray;
+    }
+
 }
 class ScalesStorageEngineArr implements IStorageEngine {
 
