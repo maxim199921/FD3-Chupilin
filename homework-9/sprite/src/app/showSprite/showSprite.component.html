@@ -1,0 +1,10 @@
+<div [ngStyle] = "{
+     'width': width + 'px',
+     'height': height + 'px',
+     'background-image': 'url(' + spriteUrl + ')'
+      }"
+     [style.backgroundPosition]="offsetX + 'px ' + offsetY + 'px'"
+     (click)="changeSprite.emit({width:$event.target.getBoundingClientRect().width, height:$event.target.getBoundingClientRect().height})">
+</div>
+
+
