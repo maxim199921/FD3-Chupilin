@@ -1,0 +1,17 @@
+<div>
+    <div>
+        <form #show="ngForm" (ngSubmit)="showMessage(show)">
+            <input name=message type=text ngModel required pattern="[0-9]+" maxlength="2">
+            <input type=submit value="set number" [disabled]="!show.valid">
+        </form>
+    </div>
+    <div>
+        <span>
+            {{mess}}
+            {{number}}
+            {{number|transformToText:'яблоко':'яблока':'яблок'}}
+        </span>
+    </div>
+</div>
+
+
