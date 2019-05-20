@@ -1,0 +1,16 @@
+.task {
+    background-color: black;
+    min-height: 80vh;
+    color: white;
+    font-size: 14px;
+    max-width: 50%;
+    margin: auto;
+    margin-top: 5vh;
+    position: relative;
+}
+
+.task_title {
+    margin-top: 4%;
+    margin-bottom: 12%;
+    font-size:22px;
+}

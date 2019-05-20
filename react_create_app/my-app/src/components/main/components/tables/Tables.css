@@ -1,0 +1,14 @@
+.btn_save,
+.btn_close {
+    position: absolute;
+}
+
+.btn_save {
+    bottom: 20px;
+    left: 20px;
+}
+
+.btn_close {
+    bottom: 20px;
+    left: 90px;
+}

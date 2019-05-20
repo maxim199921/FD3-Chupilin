@@ -1,0 +1,15 @@
+.drag_list {
+    padding: 5px;
+    cursor: pointer;
+    padding-left: 25px;
+}
+.drag_list:hover {
+    background-color: slategray;
+}
+
+.drag_list_block {
+    color: #6f7375;
+    padding: 5px;
+    cursor: pointer;
+    padding-left: 25px;
+}
